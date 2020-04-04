@@ -1,0 +1,28 @@
+{% extends "microsoftCalApp/layout.html" %}
+{% block content %}
+<h1>Calendar</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Subject</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+      <th scope="col">Location</th>
+      <th scope="col">All Day</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if events %}
+      {% for event in events %}
+        <tr>
+          <td>{{ event.subject }}</td>
+          <td>{{ event.start.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
+          <td>{{ event.end.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
+          <td>{{ event.location.displayName }}</td>
+          <td>{{ event.isAllDay }}</td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}

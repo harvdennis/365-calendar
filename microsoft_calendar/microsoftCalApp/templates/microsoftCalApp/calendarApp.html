@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>microsoftCalApp</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "microsoftCalApp/calendarApp.css" %}">
+    <script src="{% static "microsoftCalApp/clock.js" %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="{% static "microsoftCalApp/check-visible.js" %}"></script>
+    <script type = "text/JavaScript">
+      <!--
+         function AutoRefresh( t ) {
+            setTimeout("location.reload(true);", t);
+         }
+      //-->
+   </script>
+  </head>
+
+  <body onload="startTime(), AutoRefresh(3600000)">
+    <main role="main" class="container">
+      {% if errors %}
+        {% for error in errors %}
+          <div class="alert alert-danger" role="alert">
+            <p class="mb-3">{{ error.message }}</p>
+            {% if error.debug %}
+              <pre class="alert-pre border bg-light p-2"><code>{{ error.debug }}</code></pre>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </main>
+    <div class="column" id='left-col'>
+      <a class="back-btn" href="{% url 'home' %}"><svg xmlns="http://www.w3.org/2000/svg" height="100" viewBox="0 0 24 24" width="100"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></a>
+      <img class="logo" src="{% static "microsoftCalApp/logo.png" %}" alt="logo">
+      <div class="date-time">
+        <div id="clock"></div>
+        <div id="date"></div>
+      </div>
+      <br>
+      <!------------Put twitter tag under here------------>
+
+
+      
+    </div>
+    <div class="column" id='right-col' >
+      {% if events %}
+        {% for event in events %}
+          {% if event.isTomorrow == True %}
+            <h3 class="devider">Tomorrow</h3>
+            <div class="line"></div>
+          {% endif %}
+          {% if event.isToday == True %}
+            <h3 class="devider">Today</h3>
+            <div class="line"></div>
+          {% endif %}
+          {% if event.isRest == True %}
+            <h3 class="devider">Future</h3>
+            <div class="line"></div>
+          {% endif %}
+          <div class="event">   
+            <div class="event-date">{{ event.start.dateTime.date }}</div>  
+            {% if event.isAllDay == True %}
+              <div class="event-time">All Day</div> 
+            {% endif %}
+            {% if event.isAllDay == False %}
+              <div class="event-time">{{ event.start.dateTime|date:'TIME_FORMAT' }} - {{ event.end.dateTime|date:'TIME_FORMAT' }}</div>
+            {% endif %}
+            <div class="event-subject">{{ event.subject }}</div>
+            {% if event.location.displayName %}
+              <div class="event-location">Location: {{ event.location.displayName }}</div>
+            {% endif %}
+            </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <!--<table class="table">
+      <thead>
+          <tr>
+              <th scope="col">Subject</th>
+              <th scope="col">Start</th>
+              <th scope="col">End</th>
+              <th scope="col">Location</th>
+              <th scope="col">All Day</th>  
+          </tr>
+      </thead>
+      <tbody>
+          {% if events %}
+          {% for event in events %}
+              <tr>
+                    
+                <td>{{ event.subject }}</td>
+                <td>{{ event.start.dateTime|date:'DATE_FORMAT' }}  {{ event.start.dateTime|date:'TIME_FORMAT' }}</td>
+                <td>{{ event.start.dateTime|date:'TIME_FORMAT' }}</td>
+                <td>{{ event.location.displayName }}</td>
+                <td>{{ event.isAllDay }}</td>
+                   
+              </tr>
+          {% endfor %}
+          {% endif %}
+      </tbody>
+      </table>-->
+  </body>
+</html>

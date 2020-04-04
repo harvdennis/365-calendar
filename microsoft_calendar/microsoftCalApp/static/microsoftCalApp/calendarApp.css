@@ -1,0 +1,156 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #1c1e21;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.alert-pre {
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.column{
+    height: 95vh;
+    width: 30%;
+    margin: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+#left-col{
+    float: left;
+    margin-left: 1.75rem;
+}
+
+
+#right-col{
+    float: right;
+    margin-right: 1%;
+    margin-top: 1.75rem;
+    width: 65%;
+    height: 93vh;
+    background-color: #212529;
+    box-shadow: 0px, 3px, 5px, 2px, rgba(0,0,0,0.9);
+    column-count: 2;
+    column-width: 46%;
+    padding: 2.5% 10px;
+}
+
+
+.back-btn{
+    z-index: 999;
+    position: absolute;
+}
+
+.back-btn svg{
+    z-index: 999;
+    position: absolute;
+}
+
+.back-btn svg path{
+    z-index: 999;
+    position: absolute;
+    opacity: 0;
+    transition: all ease 0.4s;
+}
+
+.back-btn:hover svg path{
+    opacity: 1;
+}
+
+.logo{
+    margin: 0.5rem;
+    height: 17.5vh;
+    opacity: 0.9;
+}
+
+.date-time{
+    margin: 0.5rem;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: rgba(255,255,255,0.9);
+}
+#clock{
+    position: relative;
+    font-size: 4rem;
+    
+}
+
+#clock .seconds{
+    position: relative;
+    font-size: 2.5rem;
+}
+
+#date{
+    margin: 0.1rem;
+    position: relative;
+    font-size: 2rem;
+    right: 0px;
+}
+
+#twitter-widget-0 { 
+    position: absolute !important;
+    width: 100% !important; 
+    height: 75vh !important;
+    bottom: 0px !important;
+    margin: 0px !important;
+    box-shadow: 0px, 3px, 5px, 2px, rgba(0,0,0,0.9) !important;
+}
+
+
+.event{
+    position: relative;
+    width: 80%;
+    color: rgba(255,255,255,0.9);
+    margin: 2rem 0px 0px 0px;
+    margin-left: 5rem;
+    -webkit-column-break-inside: avoid;
+}
+
+.event-date{
+    color: rgba(209, 227, 255,0.9);
+    display: inline-block;
+    font-size: 1.3rem;
+    -webkit-column-break-inside: avoid;
+}
+
+.event-time{
+    color: rgba(209, 227, 255,0.9);
+    display: inline-block;
+    font-size: 1.3rem;
+    margin-left: 1rem;
+    -webkit-column-break-inside: avoid;
+}
+
+.event-subject{
+    font-size: 1.7rem;
+    font-weight:500;
+    -webkit-column-break-inside: avoid;
+}
+
+.event-location{
+    color: white;
+    font-size: 1.1rem;
+    -webkit-column-break-inside: avoid;
+}
+
+.devider{
+    margin-top: 1rem;
+    color: white;
+    font-size: 40px;
+    margin-left: 3rem;
+    -webkit-column-break-inside: avoid;
+}
+
+.line{
+    height: 1px;
+    width: 80%;
+    margin-left: 3rem;
+    background-color: rgba(255,255,255, 0.8);
+    -webkit-column-break-inside: avoid;
+}
